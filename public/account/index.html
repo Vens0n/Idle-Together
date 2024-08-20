@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>idle together</title>
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="./sources/css/style.css">
+</head>
+
+<body onload="load()">
+<style>@keyframes moveBackground{0%{background-position:0 0}100%{background-position:-100% -95.5%}}.background-div{background:linear-gradient(58deg,rgba(167,80,0,1) 0,rgba(255,134,0,1) 35%,rgba(255,197,85,1) 100%);position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden}.bubbles-div{background-image:url(/bubbles.png);background-repeat:5;background-size:25%;position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;animation:moveBackground 20s linear infinite}</style><div class=background-div><div class=bubbles-div></div></div>
+
+    <!--<h1 class="title">Idle Together™ </h1>
+    <h1 class="title behind">Idle Together™ </h1>-->
+    <img src="../logos/Medium.png" alt="" class="logo">
+    <div class="holder">
+        <div class="login">
+            <h1>Welcome Back!</h1>
+            <h3 id="logtext">We're so excited to see you again!</h3>
+            <div class="modal">
+                <label for="email">email address <span>(REQUIRED)</span></label>
+                <input type="text" id="loggmail">
+                <label for="email">Password <span>(REQUIRED)</span></label>
+                <input type="password" class="passwordInput" id="logpassword">
+                <a class="link">Forgot your password?</a>
+
+                <button class="login" onclick="login()">Log In</button>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="register">
+            <h1>New member?</h1>
+            <h3 id="regtext">Register to Idle Together™ here!</h3>
+            <div class="modal">
+                <label for="username">USERNAME <span>(REQUIRED)</span></label>
+                <div class="username">
+                    <input type="text" name="username" id="regusername">
+                    <input type="text" name="tag" placeholder="#0000" maxlength='5' id="regdiscrim">
+                </div>
+
+                <label for="email">EMAIL ADDRESS <span>(REQUIRED)</span></label>
+                <input type="text" name="email" id="reggmail">
+
+                <label for="password">Password <span>(REQUIRED)</span></label>
+                <input type="password" class="passwordInput" name="password" id="regpassword">
+
+                <button class="signup" onclick="register()">Register</button>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- JS -->
+ 
+<script src="/socket.io/socket.io.js"></script>
+<script src="./sources/js/main.js"></script>
+
+</html>

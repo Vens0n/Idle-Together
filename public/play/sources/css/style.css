@@ -1,0 +1,401 @@
+@import url(/global.css);
+
+@font-face {
+	font-family: "Twemoji";
+	src: url("/fonts/Twemoji/TwitterColorEmoji-SVGinOT.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	user-select: none;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: var(--main-font);
+}
+
+/* ===== Scrollbar CSS ===== */
+*::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.left-box {
+	position: absolute;
+	height: 100%;
+	width: 30%;
+}
+
+.idlegroupname {
+	font-family: var(--main-font);
+	color: white;
+	position: absolute;
+	width: 100%;
+	height: 10%;
+	top: 5%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	overflow-wrap: break-word;
+	white-space: normal;
+	padding: 0 10px;
+	font-weight: 700;
+	filter: drop-shadow(0 0 10px black);
+}
+
+.idlemoneyamount {
+	font-family: var(--main-font);
+	color: white;
+	position: absolute;
+	width: 100%;
+	height: 3%;
+	top: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	overflow-wrap: break-word;
+	white-space: normal;
+	padding: 0 10px;
+	font-weight: 700;
+	filter: drop-shadow(0 0 10px black);
+}
+
+/* Define the first shake animation */
+@keyframes shake1 {
+	0% {
+		transform: scale(0.9) rotate(-1deg);
+	}
+	20% {
+		transform: scale(1.1) rotate(-5deg);
+	}
+	50% {
+		transform: scale(0.95) rotate(5deg);
+	}
+	75% {
+		transform: scale(1.025) rotate(-2.5deg);
+	}
+	100% {
+		transform: scale(1) rotate(0deg);
+	}
+}
+
+/* Define the second shake animation */
+@keyframes shake2 {
+	0% {
+		transform: scale(0.9) rotate(1deg);
+	}
+	20% {
+		transform: scale(1.1) rotate(5deg);
+	}
+	50% {
+		transform: scale(0.95) rotate(-5deg);
+	}
+	75% {
+		transform: scale(1.025) rotate(2.5deg);
+	}
+	100% {
+		transform: scale(1) rotate(0deg);
+	}
+}
+
+@keyframes animgoingawayframes {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
+
+.animgoingaway {
+	animation: animgoingawayframes 0.5s ease;
+	aspect-ratio: 1/1;
+	border-radius: 100%;
+}
+
+/* Apply styles to the clickable element */
+.clicker {
+	position: absolute;
+	top: calc(50% - 12.5vw); /* Adjust based on the element's height */
+	left: 2.5vw; /* Align with the left side of the screen */
+	width: 25vw;
+	filter: drop-shadow(0 0 10px black);
+}
+
+.clickerinvis {
+	position: absolute;
+	z-index: 100;
+	top: calc(50% - 12.5vw); /* Adjust based on the element's height */
+	left: 2.5vw; /* Align with the left side of the screen */
+	width: 25vw;
+	height: 25vw;
+	cursor: pointer; /* Optional: Change cursor to indicate it's clickable */
+}
+
+/* Class to apply the shake animations */
+.shake1 {
+	animation: shake1 0.5s ease;
+}
+
+.shake2 {
+	animation: shake2 0.5s ease;
+}
+
+.mid-box {
+	background-color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	height: 13.8vw;
+	width: 40%;
+	left: 30%;
+}
+
+.midicon {
+	width: 55%;
+	position: absolute;
+	left: 1vw;
+	top: 1vw;
+	filter: drop-shadow(0 0 10px black);
+}
+
+.useronlinelist {
+	display: flex; /* Use Flexbox to align items */
+	flex-wrap: wrap; /* Allow items to wrap within the grid */
+	justify-content: center; /* Center items horizontally */
+	align-items: center; /* Center items vertically */
+	position: absolute;
+	right: 1vw;
+	top: 1vw; /* Start at the middle of the container */
+	height: 11.8vw; /* Adjust as needed */
+	width: 38.5%; /* Adjust as needed */
+	filter: drop-shadow(0 0 10px black);
+}
+
+.usericonbox {
+	position: relative;
+	flex: 1 0 23.3334%; /* Adjusts width and allows wrapping */
+	margin: 5%;
+	aspect-ratio: 1/1;
+}
+
+.usericonprofile {
+	width: 100%;
+	height: width;
+	border-radius: 100%;
+	aspect-ratio: 1/1;
+}
+
+.usericon {
+	position: absolute; /* Positioned relative to .usericonbox */
+	bottom: 0.25vw; /* Adjust as needed */
+	right: 0.25vw; /* Adjust as needed */
+	width: 1vw; /* Size of the circle */
+	height: 1vw; /* Size of the circle */
+	border-radius: 50%; /* Makes it a circle */
+	background-color: red; /* Default offline color */
+}
+
+.mid-list {
+	background-color: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	top: 13.8vw;
+	height: calc(100% - 13.8vw);
+	width: 40%;
+	left: 30%;
+}
+
+.right-box {
+	position: absolute;
+	height: 100%;
+	width: 30%;
+	right: 0%;
+}
+
+.top-area {
+	background: rgb(0, 0, 0);
+	background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
+	background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
+	border-bottom: 0.25vh solid;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	height: 10vh;
+}
+
+.top-text {
+	color: white;
+	font-family: var(--main-font);
+	font-weight: 700;
+	position: absolute;
+	font-size: 5vh;
+	padding: 2vh;
+	filter: drop-shadow(0 0 10px black);
+}
+
+.top-button {
+	position: absolute;
+	right: 2.5vh;
+	top: 2.5vh;
+	width: 5vh;
+	height: 5vh;
+	filter: drop-shadow(0 0 10px black);
+	transition: 0.25s;
+}
+
+.top-button:hover {
+	rotate: 45deg;
+	scale: 1.25;
+}
+
+.upgrade-area {
+	position: absolute;
+	top: 10vh;
+	width: 200%;
+	right: 0px;
+	height: 90vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.upgrade-box {
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 10px;
+	width: 47.5%;
+	margin-left: 51.25%;
+	right: 0px;
+	height: 10vh;
+	margin-top: 1vh;
+	transition: 0.25s;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0);
+	padding: none;
+}
+
+.upgrade-box:hover {
+	background: rgba(0, 0, 0, 0.5);
+	scale: 1.05;
+	margin-left: 50%;
+	filter: drop-shadow(0 0 10px black);
+	border-style: solid;
+	border-color: white;
+}
+
+.upgrade-emoji img {
+	left: -0.25vh;
+	top: -0.25vh;
+	scale: 0.9;
+	position: relative;
+	height: 10vh;
+	width: auto;
+}
+
+.upgrade-title {
+	color: white;
+	font-family: var(--main-font);
+	font-weight: 700;
+	font-size: 1.25rem;
+	position: relative;
+	left: 10vh;
+	top: -10vh;
+}
+
+.upgrade-info {
+	color: var(--main-color);
+	font-family: var(--main-font);
+	font-weight: 700;
+	font-size: 1.25rem;
+	position: relative;
+	left: 10vh;
+	top: -10vh;
+}
+.upgrade-details {
+	color: darkgray;
+	font-family: var(--main-font);
+	font-weight: 700;
+	font-size: 1rem;
+	position: relative;
+	left: 10vh;
+	top: -10vh;
+}
+
+.owned-area {
+	position: absolute;
+	width: 100%;
+	right: 0px;
+	height: 90vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	z-index: 2;
+}
+
+.owned-box {
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 10px;
+	width: 97.5%;
+	margin-left: 1.25%;
+	right: 0px;
+	height: 10vh;
+	margin-top: 1vh;
+	transition: 0.25s;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0);
+	padding: none;
+}
+
+.owned-box:hover {
+	background: rgba(0, 0, 0, 0.5);
+	scale: 1.02;
+	filter: drop-shadow(0 0 10px black);
+	border-style: solid;
+	border-color: white;
+}
+
+.owned-emoji img {
+	left: -0.25vh;
+	top: -0.25vh;
+	scale: 0.9;
+	position: relative;
+	height: 10vh;
+	width: auto;
+}
+
+.owned-title {
+	color: white;
+	font-family: var(--main-font);
+	font-weight: 700;
+	font-size: 1.25rem;
+	position: relative;
+	left: 10vh;
+	top: -10vh;
+}
+
+.owned-info {
+	color: var(--accent-color);
+	font-family: var(--main-font);
+	font-weight: 700;
+	font-size: 1.25rem;
+	position: relative;
+	left: 10vh;
+	top: -10vh;
+}
+.owned-details {
+	color: darkgray;
+	font-family: var(--main-font);
+	font-weight: 700;
+	font-size: 1rem;
+	position: relative;
+	left: 10vh;
+	top: -10vh;
+}

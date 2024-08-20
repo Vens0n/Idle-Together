@@ -1,0 +1,6 @@
+@import url(/global.css);
+
+* {
+	font-family: var(--main-font);
+	font-weight: 1000;
+}

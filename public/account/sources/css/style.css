@@ -1,0 +1,206 @@
+@import url(/global.css);
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+::placeholder {
+    font-weight: 100;
+}
+
+img.logo {
+    position: absolute;
+    top: 30px;
+    width: 350px;
+}
+
+h1.title {
+    -webkit-text-stroke: black 2px;
+    position: absolute;
+    top: 30px;
+    font-size: 80px;
+    padding: 0 10px;
+    background: linear-gradient(45deg, #1d4a73, #1d8ef2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    font-style: italic;
+    z-index: 4;
+}
+
+h1.title.behind {
+    background: none;
+    text-shadow: #292929 0px 0px 10px;
+    z-index: 3;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.holder {
+    position: relative;
+    min-width: 800px;
+    min-height: 40vh;
+    background: linear-gradient(45deg, #1d4a73, #1d8ef2);
+    border-radius: var(--main-border-radius);
+    box-shadow: #292929 0px 0px 10px;
+    text-align: center;
+    padding: 35px;
+    display: flex;
+}
+
+div.holder h1 {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: white;
+}
+
+div.holder h3 {
+    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: 100;
+    color: var(--main-color);
+}
+
+div.separator {
+    width: 3px;
+    height: 85%;
+    background: #222;
+    border-radius: 999px;
+    position: absolute;
+    left: 50%;
+    display: block;
+}
+
+div.login {
+    width: 47.5%;
+    margin-right: 2.5%;
+}
+
+div.register {
+    width: 47.5%;
+    margin-left: 2.5%;
+}
+
+div.login label, div.register label {
+    margin-top: 20px;
+    padding: 5px 0;
+    font-weight: 900;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: unset;
+}
+
+a.link {
+    background: #222;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--main-color);
+    padding: 4px;
+    border-bottom-left-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+}
+
+a.link:hover {
+    color: var(--main-color-hover);
+}
+
+a.link:active {
+    color: var(--main-color-click);
+}
+
+div.modal {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+div.modal input {
+    outline: none;
+    font-weight: 900;
+    color: white;
+    background: #222;
+    border: none;
+    padding: 10px;
+    border-radius: var(--input-border-radius);
+    width: 100%;
+    height: 40px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #222 inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+
+.errorMsg {
+    color: var(--error-text) !important;
+    font-weight: 900 !important;
+    font-style: italic;
+}
+
+.login div.modal input.passwordInput {
+    border-bottom-left-radius: 0;
+}
+
+div.modal label {
+    font-weight: normal;
+    color: white;
+}
+
+div.modal label span {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+button.login, button.signup {
+    width:100%;
+    font-weight: 900;
+    margin-top:20px;
+    height: 48px;
+    border-radius: var(--main-border-radius);
+    border: none;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    background: var(--main-color);
+}
+
+button.login:hover, button.signup:hover {
+    background: var(--main-color-hover);
+}
+button.login:active, button.signup:active {
+    background: var(--main-color-click);
+}
+
+div.register .modal {
+    align-items: end;
+}
+
+div.username {display: flex;}
+
+div.register [name="username"] {
+    width: 80%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+div.register [name="tag"] {
+    width: 20%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

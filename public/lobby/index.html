@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Lobby</title>
+    <link href="./sources/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body onload="load()">
+
+<style>@keyframes moveBackground{0%{background-position:0 0}100%{background-position:-100% -95.5%}}.background-div{z-index:-1;background:linear-gradient(58deg,rgba(167,80,0,1) 0,rgba(255,134,0,1) 35%,rgba(255,197,85,1) 100%);position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden}.bubbles-div{background-image:url(/bubbles.png);background-repeat:5;background-size:25%;position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;animation:moveBackground 20s linear infinite}</style><div class=background-div style="z-index:-1"><div class=bubbles-div></div></div>
+
+    <div class="lobbybox">
+        <div class="header">
+            <img src="/logos/justlogo.png" alt="">
+            <h1>Lobbies</h1>
+        </div>
+        <div class="buttonHolders">
+            <button id="createLobby">Create Lobby</button>
+            <button id="joinLobby" disabled>Join Lobby</button>
+        </div>
+        <div class="lobbies">
+            <div class="lobby">
+                <div class="leftside">
+                    <div class="lobbyName">
+                        <p>Lobby Name:</p>
+                        <h1 class="LobbyName">SILLY GUy</h1>
+                    </div>
+                    
+                    <div class="lobbyCreator">
+                        <p>By:</p>
+                        <img src="https://cdn.discordapp.com/avatars/1156550152883023873/30148a9bb7da91fadd69d45cf7abd79b.webp?size=80" alt="ljharnish">
+                        <p>ljharnish</p>
+                    </div>
+                </div>
+
+                <div class="rightside">
+                    <h1 class="players"><p>Players:</p>3/10</h1>
+                    <button>Select Lobby</button>
+                </div>
+            </div>
+            <div class="lobby">
+                <div class="leftside">
+                    <div class="lobbyName">
+                        <p>Lobby Name:</p>
+                        <h1 class="LobbyName">Black Men Only</h1>
+                    </div>
+            
+                    <div class="lobbyCreator">
+                        <p>By:</p>
+                        <img src="https://cdn.discordapp.com/avatars/638368326996983848/b12cc59cea81df487d976db73a777687.png?size=256"
+                            alt="Venson">
+                        <p>ljharnish</p>
+                    </div>
+                </div>
+            
+                <div class="rightside">
+                    <h1 class="players">
+                        <p>Players:</p>1/10
+                    </h1>
+                    <button>Select Lobby</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="./sources/js/main.js"></script>
+
+</html>

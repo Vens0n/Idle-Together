@@ -1,0 +1,59 @@
+@import url(/fonts/SF-Pro-Display/sf-pro-display.css);
+@import url(/fonts/Twemoji/twemoji.css);
+
+html {
+    background: rgb(167, 80, 0);
+    background: var(--main-gradient);
+    background: url('../../../background.png');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;width: 100%;
+}
+
+:root {
+    /*! Colors */
+    --main-gradient: linear-gradient(58deg, rgba(167, 80, 0, 1) 0%, rgba(255, 134, 0, 1) 35%, rgba(255, 197, 85, 1) 100%);;
+    --accent-gradient: linear-gradient(45deg, #1d4a73, #1d8ef2);
+
+    --main-color: #ff8f00;
+    --accent-color: #0088cc;
+
+    --main-color-hover: #c06d00;
+    --main-color-click: #d27700;
+    
+    --accent-color-hover: #005d8c;
+    --accent-color-click: #0080c0;
+
+    --input-text-background: #222;
+    --input-text: #fff;
+
+    --disabled-button: #828282;
+    --disabled-button-text: #3a3a3a;
+    --error-text: #ac2020;
+
+
+    /*! Box Shadow */
+    --main-menu-shadow: #292929 0px 0px 10px;
+
+
+    /*! Fonts */
+    --main-font: 'SF Pro Display';
+    --twemoji: 'Twemoji';
+    font-family: var(--main-font);
+
+
+    /*! Border-radii */
+    --main-border-radius: 0.3rem;
+    --input-border-radius: 0.2rem;
+}
+
+button:disabled {
+    cursor: not-allowed !important;
+    background: var(--disabled-button) !important;
+    color: var(--disabled-button-text) !important;
+}

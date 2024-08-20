@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>idle together</title>
+		<!-- CSS -->
+
+		<link rel="stylesheet" href="./sources/css/style.css" />
+	</head>
+
+	<body onload="load()">
+		<style>
+			@keyframes moveBackground {
+				0% {
+					background-position: 0 0;
+				}
+				100% {
+					background-position: -35vh -35vh;
+				}
+			}
+			.background-div {
+				z-index: -1;
+				background: linear-gradient(58deg, rgba(167, 80, 0, 1) 0, rgba(255, 134, 0, 1) 35%, rgba(255, 197, 85, 1) 100%);
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.bubbles-div {
+				background-image: url(/logos/bubbles.gif);
+				opacity: 0.12;
+				background-repeat: repeat;
+				background-size: 35vh;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				animation: moveBackground 7s linear infinite;
+			}
+		</style>
+		<div class="background-div"><div class="bubbles-div"></div></div>
+
+		<div class="left-box">
+			<div class="idlegroupname">
+				<span id="gametitle">game.title</span>
+			</div>
+			<div class="idlemoneyamount">
+				<span id="saycookieammount">game.tag</span>
+			</div>
+			<div id="clickeremoji" class="clicker">🔳</div>
+			<div class="clickerinvis"></div>
+			<div class="chatBox"></div>
+		</div>
+		<div class="mid-box">
+			<image class="midicon" src="/logos/big.png"></image>
+
+			<div class="useronlinelist">
+				<div class="usericonbox">
+					<image class="usericonprofile" src="https://media.discordapp.net/attachments/1009280303883358269/1272284349454094457/download_1.jpg?ex=66ba6aa2&is=66b91922&hm=4a97b6fcebec476f857cf7975bad0fe9ddbf404ef3ec79c80f6954c1badf3a14&=&format=webp&width=585&height=554"></image>
+					<div class="usericon"></div>
+				</div>
+				<div class="usericonbox">
+					<image class="usericonprofile" src="https://media.discordapp.net/attachments/1009280303883358269/1272284349454094457/download_1.jpg?ex=66ba6aa2&is=66b91922&hm=4a97b6fcebec476f857cf7975bad0fe9ddbf404ef3ec79c80f6954c1badf3a14&=&format=webp&width=585&height=554"></image>
+					<div class="usericon"></div>
+				</div>
+				<div class="usericonbox">
+					<image class="usericonprofile" src="https://media.discordapp.net/attachments/1009280303883358269/1272284349454094457/download_1.jpg?ex=66ba6aa2&is=66b91922&hm=4a97b6fcebec476f857cf7975bad0fe9ddbf404ef3ec79c80f6954c1badf3a14&=&format=webp&width=585&height=554"></image>
+					<div class="usericon"></div>
+				</div>
+				<div class="usericonbox">
+					<image class="usericonprofile" src="https://media.discordapp.net/attachments/1009280303883358269/1272284349454094457/download_1.jpg?ex=66ba6aa2&is=66b91922&hm=4a97b6fcebec476f857cf7975bad0fe9ddbf404ef3ec79c80f6954c1badf3a14&=&format=webp&width=585&height=554"></image>
+					<div class="usericon"></div>
+				</div>
+				<div class="usericonbox">
+					<image class="usericonprofile" src="https://media.discordapp.net/attachments/1009280303883358269/1272284349454094457/download_1.jpg?ex=66ba6aa2&is=66b91922&hm=4a97b6fcebec476f857cf7975bad0fe9ddbf404ef3ec79c80f6954c1badf3a14&=&format=webp&width=585&height=554"></image>
+					<div class="usericon"></div>
+				</div>
+				<div class="usericonbox">
+					<image class="usericonprofile" src="https://media.discordapp.net/attachments/1009280303883358269/1272284349454094457/download_1.jpg?ex=66ba6aa2&is=66b91922&hm=4a97b6fcebec476f857cf7975bad0fe9ddbf404ef3ec79c80f6954c1badf3a14&=&format=webp&width=585&height=554"></image>
+					<div class="usericon"></div>
+				</div>
+			</div>
+		</div>
+		<div class="mid-list">
+			<div class="owned-area">
+				<div class="owned-box">
+					<div class="owned-emoji">🛠️</div>
+					<div class="owned-title">RUSTY TOOL</div>
+					<div class="owned-info">15$ (0 OWNED)</div>
+					<div class="owned-details">Increases click efficiency slightly.</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🔨</div>
+					<div class="owned-title">WOODEN HAMMER</div>
+					<div class="owned-info">100$ (0 OWNED)</div>
+					<div class="owned-details">Adds a small multiplier to your clicks.</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🤖</div>
+					<div class="owned-title">METALLIC FINGER</div>
+					<div class="owned-info">350$ (0 OWNED)</div>
+					<div class="owned-details">Automates some clicks over time.</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🟡</div>
+					<div class="owned-title">GOLDEN CLICK</div>
+					<div class="owned-info">1250$ (0 OWNED)</div>
+					<div class="owned-details">Increases the value of each click.</div>
+				</div>
+			</div>
+		</div>
+		<div class="right-box">
+			<div class="top-area">
+				<div class="top-text">IDLE TOGETHER</div>
+				<div class="top-button">⚙️</div>
+			</div>
+			<div class="upgrade-area">
+				<div class="upgrade-box">
+					<div class="upgrade-emoji">🛠️</div>
+					<div class="upgrade-title">RUSTY TOOL</div>
+					<div class="upgrade-info">15$ (0 OWNED)</div>
+					<div class="upgrade-details">Increases click efficiency slightly.</div>
+				</div>
+				<div class="upgrade-box">
+					<div class="upgrade-emoji">🔨</div>
+					<div class="upgrade-title">WOODEN HAMMER</div>
+					<div class="upgrade-info">100$ (0 OWNED)</div>
+					<div class="upgrade-details">Adds a small multiplier to your clicks.</div>
+				</div>
+				<div class="upgrade-box">
+					<div class="upgrade-emoji">🤖</div>
+					<div class="upgrade-title">METALLIC FINGER</div>
+					<div class="upgrade-info">350$ (0 OWNED)</div>
+					<div class="upgrade-details">Automates some clicks over time.</div>
+				</div>
+				<div class="upgrade-box">
+					<div class="upgrade-emoji">🟡</div>
+					<div class="upgrade-title">GOLDEN CLICK</div>
+					<div class="upgrade-info">1250$ (0 OWNED)</div>
+					<div class="upgrade-details">Increases the value of each click.</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<!-- JS -->
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="./sources/js/main.js"></script>
+	<script src="./sources/js/socketstuff.js"></script>
+
+	<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</html>
