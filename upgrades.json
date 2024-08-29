@@ -1,0 +1,109 @@
+[
+	{
+		"name": "Basic Clicker",
+		"price": 10,
+		"info": "Increases click efficiency by a small amount.",
+		"emoji": "✋",
+		"clickdamage": 0.02
+	},
+	{
+		"name": "Sharp Pen",
+		"price": 25,
+		"info": "Slightly increases click damage.",
+		"emoji": "🖊️",
+		"clickdamage": 0.05
+	},
+	{
+		"name": "Quick Glove",
+		"price": 50,
+		"info": "Increases click speed slightly.",
+		"emoji": "🧤",
+		"clickspeed": 0.5
+	},
+	{
+		"name": "Reinforced Mouse",
+		"price": 75,
+		"info": "Adds a small click multiplier.",
+		"emoji": "🖱️",
+		"clickmulti": 0.2
+	},
+	{
+		"name": "Small Auto-Clicker",
+		"price": 150,
+		"info": "Automates clicks at a slow rate.",
+		"emoji": "🤖",
+		"autoclickrate": 0.5
+	},
+	{
+		"name": "Copper Hammer",
+		"price": 200,
+		"info": "Adds a moderate multiplier to your clicks.",
+		"emoji": "🔨",
+		"clickmulti": 0.4
+	},
+	{
+		"name": "Turbo Glove",
+		"price": 300,
+		"info": "Significantly increases click speed.",
+		"emoji": "🧤",
+		"clickspeed": 1
+	},
+	{
+		"name": "Silver Pen",
+		"price": 400,
+		"info": "Increases click damage further.",
+		"emoji": "🖊️",
+		"clickdamage": 0.1
+	},
+	{
+		"name": "Fast Auto-Clicker",
+		"price": 600,
+		"info": "Automates clicks at a moderate rate.",
+		"emoji": "🤖",
+		"autoclickrate": 1.5
+	},
+	{
+		"name": "Gold Mouse",
+		"price": 800,
+		"info": "Adds a large click multiplier.",
+		"emoji": "🖱️",
+		"clickmulti": 0.6
+	},
+	{
+		"name": "Platinum Glove",
+		"price": 1000,
+		"info": "Greatly increases click speed.",
+		"emoji": "🧤",
+		"clickspeed": 1.5
+	},
+	{
+		"name": "Diamond Clicker",
+		"price": 1250,
+		"info": "Massively increases click damage.",
+		"emoji": "💎",
+		"clickdamage": 0.2
+	},
+	{
+		"name": "Super Auto-Clicker",
+		"price": 1500,
+		"info": "Automates clicks at a high rate.",
+		"emoji": "🤖",
+		"autoclickrate": 2
+	},
+	{
+		"name": "Mythical Pen",
+		"price": 2000,
+		"info": "Increases click damage and speed.",
+		"emoji": "🖊️",
+		"clickdamage": 0.3,
+		"clickspeed": 0.5
+	},
+	{
+		"name": "Legendary Hammer",
+		"price": 2500,
+		"info": "Provides a substantial click multiplier and automation.",
+		"emoji": "🔨",
+		"clickmulti": 0.8,
+		"autoclickrate": 0.5
+	}
+]
