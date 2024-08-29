@@ -6,7 +6,6 @@ function load() {
 }
 
 socket.on("loginevent", async (data) => {
-	return openPopup();
 	if (data.success) {
 		console.log("yay!");
 		location.href = data.redirect;
@@ -15,7 +14,7 @@ socket.on("loginevent", async (data) => {
 		console.log("uht oh :(");
 		if (data.message == "noprofile") return openPopup();
 		if (data.redirect) {
-			//location.href = data.redirect
+			location.href = data.redirect;
 		} else {
 			alert(data.message);
 		}
