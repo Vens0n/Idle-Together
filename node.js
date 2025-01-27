@@ -10,7 +10,7 @@ const sharp = require("sharp");
 const upgrades = require("./upgrades.json");
 
 const accountDB = new QuickDB({ filePath: "./databases/accountDB.sqlite" });
-const gamesDB = new QuickDB({ filePath: "./databases/accountDB.sqlite" });
+const lobbiesDB = new QuickDB({ filePath: "./databases/lobbiesDB.sqlite" });
 let lastClickTimes = {};
 
 server.listen(port, () => {
@@ -30,6 +30,7 @@ var testlobby = {
 	},
 	upgrades: [],
 };
+
 io.on("connection", (socket) => {
 	socket.on("idlogin", async (accountid) => {
 		var account = await accountDB.get(`user_${accountid}`);
@@ -37,6 +38,10 @@ io.on("connection", (socket) => {
 		if (account.disabled) return socket.emit("loginevent", { success: false });
 		if (!account.profile) return socket.emit("loginevent", { success: false, message: "noprofile" });
 		socket.emit("loginevent", { success: true, message: account, redirect: "/lobby" });
+	});
+
+	socket.on("test", (info) => {
+		console.log(eval(info));
 	});
 
 	socket.on("login", async (email, password) => {
@@ -148,12 +153,49 @@ io.on("connection", (socket) => {
     ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
     */
 
+	socket.on("makelobby", async (userid, lobbyinfo) => {
+		var account = await accountDB.get(`user_${userid}`);
+		if (!account) return;
+
+		console.log(account.username + " is updating their lobby.");
+		console.log(lobbyinfo);
+
+		// Add some checks here to make sure the lobby isnt hacked or something
+
+		var lobby = await lobbiesDB.get(`lobby_${account.username + account.discriminator}`);
+		if (lobby) {
+			if (lobby.active) {
+				socket.emit("loginevent", { success: false, redirect: "/play" });
+			} else {
+				lobby = lobbyinfo;
+				lobby.owner = {
+					username: account.username,
+					discriminator: account.discriminator,
+					profile: account.profile,
+				};
+			}
+		} else {
+			lobby = lobbyinfo;
+			lobby.owner = {
+				username: account.username,
+				discriminator: account.discriminator,
+				profile: account.profile,
+			};
+			lobby.active = false;
+			lobby.playercount = 1;
+		}
+		io.emit(`lobbyupdate`, {
+			lobby,
+		});
+		lobbiesDB.set(`lobby_${account.username + account.discriminator}`, lobby);
+	});
+
 	socket.on("joinroom", async (userid, room) => {
 		try {
 			var account = await accountDB.get(`user_${userid}`);
 			if (!account) return;
 			await socket.join(room);
-			//if (account.lobby == room) return io.to(account.lobby).emit("data", testlobby);
+			if (account.lobby == room) return io.to(account.lobby).emit("data", testlobby);
 			/* - */
 			if (!testlobby.members) testlobby.members = [];
 			testlobby.members.push(userid);

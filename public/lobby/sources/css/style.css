@@ -1,150 +1,168 @@
 @import url(/global.css);
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+* {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar {
+	display: none; /* Safari and Chrome */
+}
+
+a {
+	all: unset; /* Resets all styles */
+	display: block; /* Makes it behave like a block element */
+	cursor: pointer; /* Ensures it still acts like a clickable link */
+	text-decoration: none; /* Removes underline if any user agent adds it */
 }
 
 .lobbybox {
-    background: var(--accent-color-hover);
-    border-radius: var(--main-border-radius);
-    box-shadow: var(--main-menu-shadow);
-    width: 70%;
-    height: 80%;
-    border: 3px black solid;
+	position: absolute; /* Fixed typo */
+	background: var(--accent-color-hover);
+	border-radius: var(--main-border-radius);
+	box-shadow: var(--main-menu-shadow);
+	width: 70%;
+	height: 80%;
+	border: 3px black solid;
+	display: flex;
+	flex-direction: column;
 }
 
 div.header {
-    background: var(--accent-color);
-    display: flex;
-    height: 10%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0px;
-    border-radius: var(--main-border-radius);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+	background: var(--accent-color);
+	display: flex;
+	height: 10%;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 0px;
+	border-radius: var(--main-border-radius);
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 div.header img {
-    width: 150px;
+	width: 150px;
 }
 
 div.header h1 {
-    margin: 2rem;
-    font-size: xxx-large;
-    font-weight: 900;
-    font-style: italic;
+	margin: 2rem;
+	font-size: xxx-large;
+	font-weight: 900;
+	font-style: italic;
 }
 
 div.buttonHolders {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	flex-direction: row;
 }
 
 div.buttonHolders button {
-    cursor: pointer;
-    width: 50%;
-    border: none;
-    border-radius: none;
-    border-bottom-right-radius: var(--main-border-radius);
-    background: var(--main-color);
-    font-family: var(--main-font);
-    font-size: 30px;
-    font-weight: 900;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+	cursor: pointer;
+	width: 50%;
+	border: none;
+	background: var(--main-color);
+	font-family: var(--main-font);
+	font-size: 30px;
+	font-weight: 900;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
 }
 
 div.buttonHolders button:hover {
-    background: var(--main-color-hover);
+	background: var(--main-color-hover);
 }
 
 div.buttonHolders button:active {
-    background: var(--main-color-click);
-}
-
-div.buttonHolders button:first-child {
-    border-right: 1px solid black;
-    border-bottom-left-radius: var(--main-border-radius);
-    border-bottom-right-radius: 0 !important;
+	background: var(--main-color-click);
 }
 
 div.lobby {
-    background: var(--accent-color-click);
-    padding: 5px 10px;
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px black solid;
+	background: var(--accent-color-click);
+	padding: 5px 10px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 10px;
 }
 
-div.lobbyName, div.lobbyCreator {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: baseline;
+div.lobbyName,
+div.lobbyCreator {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: baseline;
 }
 
-div.lobby p, div.lobby h1 {
-    margin: 0;
+div.lobby p,
+div.lobby h1 {
+	margin: 0;
 }
 
 div.lobby p {
-    font-weight: 500;
-    margin-right: 10px;
+	font-weight: 500;
+	margin-right: 10px;
 }
 
 div.lobby h1 {
-    font-weight: 900;
-    font-style: italic;
+	font-weight: 900;
+	font-style: italic;
 }
 
 div.lobbyCreator {
-    align-items: center;
+	align-items: center;
 }
 
 div.lobbyCreator img {
-    padding: 5px;
-    border-radius: 100%;
-    height: 36px;
+	padding: 5px;
+	border-radius: 100%;
+	height: 36px;
 }
 
 div.leftside {
-    flex: 1 auto;
+	flex: 1 auto;
 }
 
 div.rightside {
-    text-align: end;
+	text-align: end;
 }
 
 h1.players {
-    display: flex;
+	display: flex;
 }
 
 div.rightside button {
-    cursor: pointer;
-    width: 100%;
-    margin-top: 5px;
-    height: 45%;
-    border: none;
-    border-radius: none;
-    border-radius: var(--main-border-radius);
-    background: var(--main-color);
-    font-family: var(--main-font);
-    font-weight: normal;
-    border: 2px black solid;
-    
+	cursor: pointer;
+	width: 100%;
+	margin-top: 5px;
+	height: 45%;
+	border: none;
+	border-radius: none;
+	border-radius: var(--main-border-radius);
+	background: var(--main-color);
+	font-family: var(--main-font);
+	font-weight: normal;
+	border: 2px black solid;
 }
 
 div.rightside button:hover {
-    background: var(--main-color-hover);
+	background: var(--main-color-hover);
 }
 
 div.rightside button:active {
-    background: var(--main-color-click);
+	background: var(--main-color-click);
+}
+
+.lobbies {
+	flex-grow: 1; /* Let this section take all remaining space */
+	overflow-y: auto; /* Enable scrolling */
+	width: 100%; /* Match the container width */
+	padding: 10px;
+	box-sizing: border-box;
 }

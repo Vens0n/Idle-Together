@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>idle together</title>
+		<!-- CSS -->
+
+		<link rel="stylesheet" href="./sources/css/style.css" />
+	</head>
+
+	<body onload="load()">
+		<style>
+			@keyframes moveBackground {
+				0% {
+					background-position: 0 0;
+				}
+				100% {
+					background-position: -35vh -35vh;
+				}
+			}
+			.background-div {
+				z-index: -1;
+				background: linear-gradient(58deg, rgba(167, 80, 0, 1) 0, rgba(255, 134, 0, 1) 35%, rgba(255, 197, 85, 1) 100%);
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.bubbles-div {
+				background-image: url(/logos/bubbles.gif);
+				opacity: 0.12;
+				background-repeat: repeat;
+				background-size: 35vh;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				animation: moveBackground 7s linear infinite;
+			}
+		</style>
+		<div class="background-div"><div class="bubbles-div"></div></div>
+
+		<div class="left-box">
+			<div class="idlegroupname">
+				<span id="gametitle">Idle Together</span>
+			</div>
+			<div class="idlemoneyamount">
+				<span id="saycookieammount">44 Clicks</span>
+			</div>
+			<div id="clickeremoji" class="clicker">🍪</div>
+			<div class="clickerinvis"></div>
+			<div class="chatBox"></div>
+		</div>
+		<div class="mid-box">
+			<image class="midicon" src="/logos/big.png"></image>
+
+			<div class="useronlinelist" id="useronlinelist">
+			</div>
+		</div>
+		<div class="mid-list">
+			<div class="owned-area">
+				<div class="owned-box">
+					<div class="owned-emoji">👋</div>
+					<div class="owned-title">LOBBY STATUS</div>
+					<div class="owned-info">
+						<label class="switch">
+							<input type="checkbox" id="publicPrivateSwitch" onchange="updateLobbyStatus()">
+							<span class="slider"></span>
+						</label>
+						<a id="showlobbystatus">Private</a>
+					</div>
+					<div class="owned-details">Show lobby to everyone?</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🤫</div>
+					<div class="owned-title">LOBBY CODE</div>
+					<input class="owned-info" placeholder="Type a secret code here" value="" id="codeinputbox" oninput="updatelobbycodet()"></input>
+					<div class="owned-details">A code users can enter to join your lobby.</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🏷️</div>
+					<div class="owned-title">LOBBY TITLE</div>
+					<input class="owned-info" placeholder="Type a title here" value="Idle Together" id="titleinputbox" oninput="updatetitletext()"></input>
+					<div class="owned-details">Examples could be "Cookie Clickers", "Venson's Lobby", "Apples"</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🏷️</div>
+					<div class="owned-title">LOBBY SUBTITLE</div>
+					<input class="owned-info" placeholder="Type a subtitle here" value="Clicks" id="subtitleinputbox" oninput="updatesubtitletext()"></input>
+					<div class="owned-details">Example could be "Clicks". Shows as "[Amount Of clicks] [Lobby subtitle]"</div>
+				</div>
+				<div class="owned-box">
+					<div class="owned-emoji">🤪</div>
+					<div class="owned-title">LOBBY EMOJI</div>
+					<input class="owned-info" placeholder="Paste Or Type an emoji here" value="🍪" id="emojiinputbox" oninput="updateemoji()"></input>
+					<div class="owned-details">Emoji's could be 🪙, 🍪. Also some at emojipedia.org"</div>
+				</div>
+			</div>
+		</div>
+		<div class="right-box">
+			<div class="top-area">
+				<div class="top-text">IDLE TOGETHER</div>
+				<div class="top-button">⚙️</div>
+			</div>
+			<div class="upgrade-area">
+				<div class="upgrade-box">
+					<div class="upgrade-emoji">🛠️</div>
+					<div class="upgrade-title">RUSTY TOOL</div>
+					<div class="upgrade-info">15$ (0 OWNED)</div>
+					<div class="upgrade-details">Increases click efficiency slightly.</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<!-- JS -->
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="./sources/js/main.js"></script>
+	<script src="./sources/js/socketstuff.js"></script>
+
+	<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</html>
