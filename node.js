@@ -14,7 +14,7 @@ const lobbiesDB = new QuickDB({ filePath: "./databases/lobbiesDB.sqlite" });
 let lastClickTimes = {};
 
 server.listen(port, () => {
-	console.log("Server listening at port %d", port);
+	console.log("Server listening at http://localhost:" + port);
 });
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -38,10 +38,6 @@ io.on("connection", (socket) => {
 		if (account.disabled) return socket.emit("loginevent", { success: false });
 		if (!account.profile) return socket.emit("loginevent", { success: false, message: "noprofile" });
 		socket.emit("loginevent", { success: true, message: account, redirect: "/lobby" });
-	});
-
-	socket.on("test", (info) => {
-		console.log(eval(info));
 	});
 
 	socket.on("login", async (email, password) => {
@@ -113,27 +109,76 @@ io.on("connection", (socket) => {
 		});
 	});
 
+	const sharp = require("sharp");
+
 	socket.on("setprofile", async (accountid, profile) => {
-		var useraccount = await accountDB.get(`user_${accountid}`);
-		if (!useraccount) return socket.emit("loginevent", { success: false, redirect: "/account" });
 		try {
+			if (!accountid || !profile) {
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Missing account ID or profile data.",
+					redirect: "/account",
+				});
+			}
+
+			const userKey = `user_${accountid}`;
+			const useraccount = await accountDB.get(userKey);
+
+			if (!useraccount) {
+				return socket.emit("loginevent", {
+					success: false,
+					message: "User account not found.",
+				});
+			}
+
+			// Validate Base64 image format
 			if (!/^data:image\/(png|jpeg|jpg|gif);base64,/.test(profile)) {
-				throw new Error("Invalid Base64 image format.");
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Invalid image format.",
+				});
 			}
 
 			const base64Data = profile.split(",")[1];
-			const imgBuffer = Buffer.from(base64Data, "base64");
+			let imgBuffer;
 
-			await sharp(imgBuffer).metadata();
+			try {
+				imgBuffer = Buffer.from(base64Data, "base64");
+			} catch (err) {
+				console.error("Error decoding base64:", err.message);
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Corrupted base64 image data.",
+				});
+			}
 
-			var useraccount = await accountDB.get(`user_${accountid}`);
+			try {
+				await sharp(imgBuffer).metadata(); // Check validity
+			} catch (err) {
+				console.error("Sharp failed to process image:", err.message);
+				console.error("Profile header:", profile.substring(0, 50));
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Invalid image content.",
+					redirect: "/account",
+				});
+			}
 
-			if (!useraccount.profile) useraccount.profile = profile;
-			await accountDB.set(`user_${accountid}`, useraccount);
+			// Save the profile
+			useraccount.profile = profile;
+			await accountDB.set(userKey, useraccount);
 
-			socket.emit("loginevent", { success: true, message: useraccount, redirect: "/lobby" });
+			socket.emit("loginevent", {
+				success: true,
+				message: useraccount,
+				redirect: "/lobby",
+			});
 		} catch (err) {
-			console.error("Invalid image data:", err.message);
+			console.error("Unexpected error during profile update:", err);
+			socket.emit("loginevent", {
+				success: false,
+				message: "An internal error occurred.",
+			});
 		}
 	});
 
@@ -154,40 +199,70 @@ io.on("connection", (socket) => {
     */
 
 	socket.on("makelobby", async (userid, lobbyinfo) => {
-		var account = await accountDB.get(`user_${userid}`);
-		if (!account) return;
+		try {
+			if (!userid || !lobbyinfo || typeof lobbyinfo !== "object") {
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Invalid lobby data.",
+					redirect: "/play",
+				});
+			}
 
-		console.log(account.username + " is updating their lobby.");
-		console.log(lobbyinfo);
+			const account = await accountDB.get(`user_${userid}`);
+			if (!account || !account.username || !account.discriminator) {
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Account not found.",
+					redirect: "/account",
+				});
+			}
 
-		// Add some checks here to make sure the lobby isnt hacked or something
+			const lobbyId = `lobby_${account.username}${account.discriminator}`;
+			let lobby = await lobbiesDB.get(lobbyId);
 
-		var lobby = await lobbiesDB.get(`lobby_${account.username + account.discriminator}`);
-		if (lobby) {
-			if (lobby.active) {
-				socket.emit("loginevent", { success: false, redirect: "/play" });
-			} else {
-				lobby = lobbyinfo;
-				lobby.owner = {
+			console.log(`${account.username} is updating their lobby.`);
+			console.log(lobbyinfo);
+
+			// Build a fresh lobby object with safe defaults
+			const newLobby = {
+				title: lobbyinfo.title || `${account.username}'s Lobby`,
+				public: !!lobbyinfo.public,
+				maxplayers: parseInt(lobbyinfo.maxplayers) || 6,
+				active: lobby?.active || false,
+				playercount: lobby?.playercount || 1,
+				owner: {
 					username: account.username,
 					discriminator: account.discriminator,
-					profile: account.profile,
-				};
-			}
-		} else {
-			lobby = lobbyinfo;
-			lobby.owner = {
-				username: account.username,
-				discriminator: account.discriminator,
-				profile: account.profile,
+					profile: account.profile || null,
+				},
+				players: lobby?.players || [], // You could auto-add the owner if needed
 			};
-			lobby.active = false;
-			lobby.playercount = 1;
+
+			// Optional: Validate maxplayers range
+			if (newLobby.maxplayers < 1 || newLobby.maxplayers > 16) {
+				return socket.emit("loginevent", {
+					success: false,
+					message: "Invalid max player count.",
+					redirect: "/play",
+				});
+			}
+
+			await lobbiesDB.set(lobbyId, newLobby);
+
+			// Emit lobby update to everyone if it's public; otherwise maybe just to the creator
+			if (newLobby.public) {
+				io.emit("lobbyupdate", { lobby: newLobby });
+			} else {
+				socket.emit("lobbyupdate", { lobby: newLobby });
+			}
+		} catch (err) {
+			console.error("Error creating lobby:", err);
+			socket.emit("loginevent", {
+				success: false,
+				message: "Something went wrong while creating the lobby.",
+				redirect: "/play",
+			});
 		}
-		io.emit(`lobbyupdate`, {
-			lobby,
-		});
-		lobbiesDB.set(`lobby_${account.username + account.discriminator}`, lobby);
 	});
 
 	socket.on("joinroom", async (userid, room) => {

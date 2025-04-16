@@ -36,8 +36,16 @@ function submitImage() {
 	if (imageUrl) {
 		fetch(imageUrl)
 			.then((response) => response.blob())
-			.then((blob) => convertBlobToBase64(blob));
+			.then((blob) => convertBlobToBase64(blob))
+			.catch((err) => {
+				console.error("Error fetching image from URL:", err);
+				alert("Failed to load image from URL.");
+			});
 	} else if (imageFile) {
+		if (!isImageFileValid(imageFile)) {
+			alert("Unsupported image type.");
+			return;
+		}
 		const reader = new FileReader();
 		reader.onload = () => {
 			const base64String = reader.result;
@@ -54,6 +62,10 @@ function convertBlobToBase64(blob) {
 		socket.emit("setprofile", accountid, base64String);
 	};
 	reader.readAsDataURL(blob);
+}
+
+function isImageFileValid(file) {
+	return ["image/png", "image/jpeg", "image/jpg", "image/gif"].includes(file.type);
 }
 
 openPopup();

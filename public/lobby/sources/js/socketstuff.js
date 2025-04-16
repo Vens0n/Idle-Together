@@ -16,7 +16,7 @@ socket.on("loginevent", async (data) => {
 
 socket.on("lobbyupdate", async (lobbyinfo) => {
 	console.log("I got this btw");
-	console.log(lobbyinfo.lobby.owner.username + lobbyinfo.lobby.owner.discriminator);
+	console.log(lobbyinfo);
 	createLobbyElement({
 		id: lobbyinfo.lobby.owner.username + lobbyinfo.lobby.owner.discriminator,
 		lobbyName: lobbyinfo.lobby.title,
